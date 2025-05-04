@@ -14,25 +14,23 @@ public class ProductBasket {
     }
 
     public void addProductInBasket(Product product) {
-        int count = 0;
         for (int i = 0; i < lengthOfProduct; i++) {
             if (basket[i] == null) {
                 basket[i] = product;
                 return;
-            } else {
-                count++;
             }
         }
-        if (count >= 5) {
-            System.out.println("Невозможно добавить продукт");
-        }
+        System.out.println("Невозможно добавить продукт");
+
     }
 
 
     public int summOfBasket() {
         int summ = 0;
         for (Product product : basket) {
-            if (product != null) summ += product.getPrice();
+            if (product != null) {
+                summ += product.getPrice();
+            }
         }
         return summ;
     }
@@ -40,19 +38,22 @@ public class ProductBasket {
     public void printProductBasket() {
         int count = 0;
         for (Product product : basket) {
-            if (product != null) System.out.println(product);
+            if (product != null) {
+                System.out.println(product);
+            }
             count++;
         }
         System.out.println("Итого: " + this.summOfBasket());
 
-        if (count == 0) System.out.println("В корзине пусто");
+        if (count == 0) {
+            System.out.println("В корзине пусто");
+        }
     }
 
-    public boolean checkAvailability(String name) {
+    public boolean checkContains(String name) {
         boolean check = false;
         for (Product p : basket) {
-            if (p == null) continue;
-            if (name.equals(p.getName())) {
+            if (p == null && name.equals(p.getName())) {
                 check = true;
                 break;
             }
@@ -61,7 +62,7 @@ public class ProductBasket {
     }
 
     public void clearProductBasket() {
-        for (int i = 0; i < lengthOfProduct; i++) {
+        for (int i = 0; i < basket.length; i++) {
             basket[i] = null;
         }
     }

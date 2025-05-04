@@ -36,11 +36,11 @@ public class App {
         System.out.println();
 
         //Поиск товара, который есть в корзине
-        System.out.println(basket.checkAvailability("лимон"));
+        System.out.println(basket.checkContains("лимон"));
         System.out.println();
 
         //Поиск товара, которого нет в корзине
-        System.out.println(basket.checkAvailability("грейпфрут"));
+        System.out.println(basket.checkContains("грейпфрут"));
         System.out.println();
 
         //Очистка корзины
@@ -55,6 +55,6 @@ public class App {
         System.out.println();
 
         //Поиск товара по имени в пустой корзине
-        System.out.println(basket.checkAvailability("яблоко"));
+        System.out.println(basket.checkContains("яблоко"));
     }
 }
