@@ -37,13 +37,18 @@ public class ProductBasket {
 
     public void printProductBasket() {
         int count = 0;
+        int specialCount = 0;
         for (Product product : basket) {
             if (product != null) {
                 System.out.println(product);
+                if (product.isSpecial()) {
+                    specialCount++;
+                }
             }
             count++;
         }
         System.out.println("Итого: " + this.summOfBasket());
+        System.out.println("Специальных товаров: " + specialCount);
 
         if (count == 0) {
             System.out.println("В корзине пусто");
@@ -53,7 +58,7 @@ public class ProductBasket {
     public boolean checkContains(String name) {
         boolean check = false;
         for (Product p : basket) {
-            if (p == null && name.equals(p.getName())) {
+            if (p != null && name.equals(p.getName())) {
                 check = true;
                 break;
             }
