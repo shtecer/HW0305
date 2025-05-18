@@ -1,10 +1,15 @@
 package org.skypro.skyshop;
 
+import org.skypro.skyshop.articles.Article;
+import org.skypro.skyshop.articles.SearchEngine;
+import org.skypro.skyshop.articles.Searchable;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
+
+import java.util.Arrays;
 
 public class App {
 
@@ -59,5 +64,32 @@ public class App {
 
         //Поиск товара по имени в пустой корзине
         System.out.println(basket.checkContains("яблоко"));
+
+
+        SearchEngine searchEngine = new SearchEngine(10);
+        searchEngine.add(product[0]);
+        searchEngine.add(product[1]);
+        searchEngine.add(product[2]);
+        searchEngine.add(product[3]);
+        searchEngine.add(product[4]);
+        searchEngine.add(product[5]);
+
+
+        Article article1 = new Article("булочки", "книга рецептов");
+        Article article2 = new Article("картофель", "советы по выращиванию");
+        Article article3 = new Article("нарезка", "варианты сервировки");
+
+        searchEngine.add(article1);
+        searchEngine.add(article2);
+        searchEngine.add(article3);
+
+        System.out.println(" ");
+
+
+        System.out.println(Arrays.toString(searchEngine.search("лимон")));
+        System.out.println(Arrays.toString(searchEngine.search( "картофель")));
+        System.out.println(Arrays.toString(searchEngine.search( "нарезка")));
     }
+
+
 }

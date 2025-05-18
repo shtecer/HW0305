@@ -22,6 +22,15 @@ public class FixPriceProduct extends Product {
     @Override
     public boolean isSpecial() {
         return true;
+    }
 
+    @Override
+    public String getSearchTerm () {
+        return getName();
+    }
+
+    @Override
+    public String getSearchableName() {
+        return getName();
     }
 }
