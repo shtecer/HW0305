@@ -6,6 +6,9 @@ package org.skypro.skyshop.product;
 
         public SimpleProduct(String name, int price) {
             super(name);
+            if (price <= 0) {
+                throw new IllegalArgumentException("Введите корректную цену");
+            }
             this.price = price;
         }
 
