@@ -8,7 +8,7 @@ import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
-
+import org.skypro.skyshop.articles.BestResultNotFound;
 import java.util.Arrays;
 
 public class App {
@@ -89,6 +89,42 @@ public class App {
         System.out.println(Arrays.toString(searchEngine.search("лимон")));
         System.out.println(Arrays.toString(searchEngine.search( "картофель")));
         System.out.println(Arrays.toString(searchEngine.search( "нарезка")));
+
+        try {
+            Product plum = new SimpleProduct("   ", 17);
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        }
+        try {
+            Product oil = new SimpleProduct("Ананас", -5);
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        }
+        try {
+            Product lemon = new DiscountedProduct("Томаты", -50, 150);
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        }
+        try {
+            Product Ice = new DiscountedProduct("Арбуз", 50, 150);
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        }
+
+
+       try {
+            Searchable result = searchEngine.findBestMatch("лимон");
+            System.out.println("Найдено: " + result.getSearchTerm());
+        } catch (BestResultNotFound e) {
+            System.err.println(e.getMessage());
+        }
+
+       try {
+            Searchable result = searchEngine.findBestMatch("черепица");
+            System.out.println("Найдено: " + result.getSearchTerm());
+        } catch (BestResultNotFound e) {
+            System.err.println(e.getMessage());
+        }
     }
 
 
