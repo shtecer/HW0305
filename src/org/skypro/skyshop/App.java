@@ -9,7 +9,7 @@ import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.articles.BestResultNotFound;
-import java.util.Arrays;
+import java.util.List;
 
 public class App {
 
@@ -31,9 +31,9 @@ public class App {
         basket.addProductInBasket(product[3]);
         basket.addProductInBasket(product[4]);
 
-        //Добавление товара в заполненную корзину, в которой нет свободного места
-        basket.addProductInBasket(product[5]);
-        System.out.println();
+//        //Добавление товара в заполненную корзину, в которой нет свободного места
+//        basket.addProductInBasket(product[5]);
+//        System.out.println();
 
         //Печать содержимого корзины с несколькими товарами
         basket.printProductBasket();
@@ -66,7 +66,7 @@ public class App {
         System.out.println(basket.checkContains("яблоко"));
 
 
-        SearchEngine searchEngine = new SearchEngine(10);
+        SearchEngine searchEngine = new SearchEngine();
         searchEngine.add(product[0]);
         searchEngine.add(product[1]);
         searchEngine.add(product[2]);
@@ -84,29 +84,23 @@ public class App {
         searchEngine.add(article3);
 
         System.out.println(" ");
-
-
-        System.out.println(Arrays.toString(searchEngine.search("лимон")));
-        System.out.println(Arrays.toString(searchEngine.search( "картофель")));
-        System.out.println(Arrays.toString(searchEngine.search( "нарезка")));
-
         try {
-            Product plum = new SimpleProduct("   ", 17);
+            Product product1= new SimpleProduct("   ", 17);
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
         }
         try {
-            Product oil = new SimpleProduct("Ананас", -5);
+            Product product2 = new SimpleProduct("Ананас", -5);
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
         }
         try {
-            Product lemon = new DiscountedProduct("Томаты", -50, 150);
+            Product product3 = new DiscountedProduct("Томаты", -50, 150);
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
         }
         try {
-            Product Ice = new DiscountedProduct("Арбуз", 50, 150);
+            Product product4 = new DiscountedProduct("Арбуз", 50, 150);
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
         }
@@ -125,7 +119,36 @@ public class App {
         } catch (BestResultNotFound e) {
             System.err.println(e.getMessage());
         }
-    }
+
+        ProductBasket basket2 = new ProductBasket();
+        basket2.addProductInBasket(product[0]);
+        basket2.addProductInBasket(product[1]);
+        basket2.addProductInBasket(product[2]);
+        basket2.addProductInBasket(product[3]);
+        basket2.addProductInBasket(product[4]);
+
+        System.out.println("Корзина2");
+        basket2.printProductBasket();
+
+        List<Product> removed = basket2.removeProductsByName("киви");
+        System.out.println("Удаленное");
+        for (Product p : removed) {
+                System.out.println(p);
+            }
 
 
+        System.out.println("После удаления");
+        basket2.printProductBasket();
+
+        List<Product> removedNonExist = basket2.removeProductsByName("Молоко");
+        System.out.println("Удаленное");
+        if (removedNonExist.isEmpty()) {
+            System.out.println("Ничего нет");
+        } else {
+            for (Product p : removedNonExist) {
+                System.out.println(p);
+            }
+        }
+        basket2.printProductBasket();
+            }
 }
