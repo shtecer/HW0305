@@ -57,5 +57,4 @@ public class ProductBasket {
     public List<Product> removeProductsByName(String name) {
         return productsBasket.remove(name);
     }
-
 }

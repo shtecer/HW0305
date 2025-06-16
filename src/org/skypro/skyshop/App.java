@@ -136,7 +136,6 @@ public class App {
             }
       }
 
-
         System.out.println("После удаления");
         basket2.printProductBasket();
 
@@ -149,6 +148,7 @@ public class App {
                 System.out.println(p);
             }
         }
+
         basket2.printProductBasket();
     }
 }

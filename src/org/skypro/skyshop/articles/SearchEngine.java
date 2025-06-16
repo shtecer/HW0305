@@ -10,20 +10,17 @@ public class SearchEngine {
 
     public SearchEngine() {
         searchableItems = new ArrayList<>();
-        //        searchableItems = new Searchable[size];
     }
 
     public void add(Searchable item) {
         searchableItems.add(item);
     }
 
-//    public List<Searchable> search(String term) {
-//        List<Searchable> results = new ArrayList<>();
+
 public Map<String, Searchable> search(String term) {
     Map<String, Searchable> resultsMap = new TreeMap<>();
         for (Searchable item : searchableItems) {
             if (item != null && item.getSearchTerm().contains(term)) {
-//                results.add(item);
                 resultsMap.put(item.getSearchableName(), item);
             }
         }
