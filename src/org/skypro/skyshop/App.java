@@ -24,16 +24,12 @@ public class App {
 
         ProductBasket basket = new ProductBasket();
 
-        //Добавление товара в корзину
         basket.addProductInBasket(product[0]);
         basket.addProductInBasket(product[1]);
         basket.addProductInBasket(product[2]);
         basket.addProductInBasket(product[3]);
         basket.addProductInBasket(product[4]);
 
-//        //Добавление товара в заполненную корзину, в которой нет свободного места
-//        basket.addProductInBasket(product[5]);
-//        System.out.println();
 
         //Печать содержимого корзины с несколькими товарами
         basket.printProductBasket();
@@ -106,14 +102,14 @@ public class App {
         }
 
 
-       try {
+        try {
             Searchable result = searchEngine.findBestMatch("лимон");
             System.out.println("Найдено: " + result.getSearchTerm());
         } catch (BestResultNotFound e) {
             System.err.println(e.getMessage());
         }
 
-       try {
+        try {
             Searchable result = searchEngine.findBestMatch("черепица");
             System.out.println("Найдено: " + result.getSearchTerm());
         } catch (BestResultNotFound e) {
@@ -132,9 +128,13 @@ public class App {
 
         List<Product> removed = basket2.removeProductsByName("киви");
         System.out.println("Удаленное");
-        for (Product p : removed) {
+        if (removed.isEmpty()) {
+            System.out.println("Список пуст");
+        } else {
+            for (Product p : removed) {
                 System.out.println(p);
             }
+      }
 
 
         System.out.println("После удаления");
@@ -142,7 +142,7 @@ public class App {
 
         List<Product> removedNonExist = basket2.removeProductsByName("Молоко");
         System.out.println("Удаленное");
-        if (removedNonExist.isEmpty()) {
+        if (removedNonExist == null || removedNonExist.isEmpty()) {
             System.out.println("Ничего нет");
         } else {
             for (Product p : removedNonExist) {
@@ -150,5 +150,5 @@ public class App {
             }
         }
         basket2.printProductBasket();
-            }
+    }
 }
