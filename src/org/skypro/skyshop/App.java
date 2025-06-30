@@ -10,17 +10,23 @@ import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.articles.BestResultNotFound;
 import java.util.List;
+import java.util.Set;
 
 public class App {
 
     public static void main(String[] args) {
-        Product[] product = new Product[6];
+        Product[] product = new Product[8];
         product[0] = new SimpleProduct("яблоко", 150);
         product[1] = new FixPriceProduct("банан");
         product[2] = new DiscountedProduct("лимон", 200, 15);
         product[3] = new DiscountedProduct("апельсин", 220, 30);
         product[4] = new SimpleProduct("киви", 240);
         product[5] = new SimpleProduct("виноград", 280);
+        product[6] = new SimpleProduct("виноград", 300);
+        product[7] = new SimpleProduct("виноград", 210);
+
+
+
 
         ProductBasket basket = new ProductBasket();
 
@@ -29,6 +35,11 @@ public class App {
         basket.addProductInBasket(product[2]);
         basket.addProductInBasket(product[3]);
         basket.addProductInBasket(product[4]);
+        basket.addProductInBasket(product[5]);
+        basket.addProductInBasket(product[6]);
+        basket.addProductInBasket(product[7]);
+
+
 
 
         //Печать содержимого корзины с несколькими товарами
@@ -71,13 +82,20 @@ public class App {
         searchEngine.add(product[5]);
 
 
+
         Article article1 = new Article("булочки", "книга рецептов");
         Article article2 = new Article("картофель", "советы по выращиванию");
         Article article3 = new Article("нарезка", "варианты сервировки");
+        Article article4 = new Article("виноград", "варианты сервировки");
+        Article article5 = new Article("виноград", "лучшие сорта");
+        Article article6 = new Article("виноград", "натюрморты");
 
         searchEngine.add(article1);
         searchEngine.add(article2);
         searchEngine.add(article3);
+        searchEngine.add(article4);
+        searchEngine.add(article5);
+        searchEngine.add(article6);
 
         System.out.println(" ");
         try {
@@ -150,5 +168,11 @@ public class App {
         }
 
         basket2.printProductBasket();
+
+        Set<Searchable> results = searchEngine.search("виноград");
+
+        for (Searchable item : results) {
+            System.out.println(item);
+        }
     }
 }
