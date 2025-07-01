@@ -24,14 +24,16 @@ public abstract class Product implements Searchable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Product)) return false;
+
         Product product = (Product) o;
-        return Objects.equals(name, product.name);
+
+        return getName().equals(product.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return getName().hashCode();
     }
 
     @Override
